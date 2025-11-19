@@ -81,8 +81,10 @@ section {
   align-items: center;
   height: 100%;
   width: 100%;
-  margin-left: 25%;
+  
 }
+
+
 
 .section--container {
   margin-top: 5vh;
@@ -97,7 +99,7 @@ section {
 
 .section--container h1 {
   font-weight: 900;
-  font-size: 13rem;
+  font-size: 5rem;
   letter-spacing: -6px;
   font-style: italic;
   width: 30%;
@@ -110,6 +112,13 @@ section {
   top: -25%;
   /* left: 300px; */
 }
+
+/* logo */
+.Innovlogo
+{
+  width: 200px;
+}
+
 
 .support--content p {
   width: 350px;
@@ -148,13 +157,6 @@ button:hover {
   box-shadow: inset 250px 0 0 0 black;
   transform: scale(1.1);
 }
-
-/* logo */
-.Innovlogo
-{
-  width: 200px;
-}
-
 
 /* CUSTOMIZER */
 
@@ -308,7 +310,7 @@ button:hover {
   }
 
   .section--container h1 {
-    font-size: 8rem;
+    font-size: 5rem;
     letter-spacing: -6px;
     line-height: 6rem;
   }

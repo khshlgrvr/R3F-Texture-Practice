@@ -4,6 +4,7 @@ import { useGLTF, useTexture, AccumulativeShadows, RandomizedLight, Decal, Envir
 import { easing } from 'maath'
 import { useSnapshot } from 'valtio'
 import { state } from './components/store'
+import { Door } from './components/Door'
 
 export const App = ({ position = [0, 0, 2.5], fov = 25 }) => (
   <Canvas shadows camera={{ position, fov }} gl={{ preserveDrawingBuffer: true }} eventSource={document.getElementById('root')} eventPrefix="client">
@@ -12,7 +13,8 @@ export const App = ({ position = [0, 0, 2.5], fov = 25 }) => (
     <CameraRig>
       <Backdrop />
       <Center>
-        <Shirt />
+        {/* <Shirt /> */}
+        <Door position={[0, 0, -5]} rotation={[0, Math.PI / 2, 0]}/>
       </Center>
     </CameraRig>
   </Canvas>

@@ -6,8 +6,8 @@ Command: npx gltfjsx@6.5.3 .\public\door\door.gltf
 import React from 'react'
 import { useGLTF } from '@react-three/drei'
 
-export function Model(props) {
-  const { nodes, materials } = useGLTF('/door.gltf')
+export function Door(props) {
+  const { nodes, materials } = useGLTF('./door/door.gltf')
   return (
     <group {...props} dispose={null}>
       <mesh geometry={nodes.mesh_0.geometry} material={materials['default material']} />
@@ -22,4 +22,4 @@ export function Model(props) {
   )
 }
 
-useGLTF.preload('/door.gltf')
+useGLTF.preload('./door/door.gltf')

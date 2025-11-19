@@ -27,7 +27,7 @@ export const Overlay = () => {
                                 initial={{ x: 100, opacity: 0 }}
                                 animate={{ x: 0, opacity: 1 }}
                                 transition={{ type: 'spring', damping: 5, stiffness: 40, restDelta: 0.001, duration: 0.3 }}>
-                                <h1>LET'S DO IT.</h1>
+                                <h1>Door</h1>
                             </motion.div>
                             <div className="support--content">
                                 <motion.div
@@ -48,7 +48,7 @@ export const Overlay = () => {
                                         own style.
                                     </p>
                                     <button style={{ background: snap.color }} onClick={() => (state.intro = false)}>
-                                        CUSTOMIZE IT <AiOutlineHighlight size="1.3em" />
+                                        Color IT <AiOutlineHighlight size="1.3em" />
                                     </button>
                                 </motion.div>
                             </div>

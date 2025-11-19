@@ -76,11 +76,12 @@ section {
   top: 0;
   left: 0;
   display: flex;
-  justify-content: center;
-  flex-direction: column;
+  justify-content: flex-start ;
+  flex-direction: row;
   align-items: center;
   height: 100%;
   width: 100%;
+  margin-left: 25%;
 }
 
 .section--container {
@@ -107,7 +108,7 @@ section {
 .support--content {
   position: relative;
   top: -25%;
-  left: 300px;
+  /* left: 300px; */
 }
 
 .support--content p {

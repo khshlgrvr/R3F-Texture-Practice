@@ -39,17 +39,12 @@ function Backdrop() {
 }
 
 function CameraRig({ children }) {
-  useFrame((state, delta) => {
-    const targetPosition = [snap.intro ? -state.viewport.width / 4 : 0, 0, 2]
 
-    easing.damp3(state.camera.position, targetPosition, 0.1, delta)
-    easing.dampE(group.current.rotation, [state.pointer.y / 10, -state.pointer.x / 5, 0], 0.25, delta)
-  })
 
   const group = useRef()
   const snap = useSnapshot(state)
   useFrame((state, delta) => {
-    easing.damp3(state.camera.position, [snap.intro ? -state.viewport.width / 4 : 0, 0, 35], 0.25, delta)
+    easing.damp3(state.camera.position, [snap.intro ? -state.viewport.width / 4 : 0, 0, 7], 0.25, delta)
     easing.dampE(group.current.rotation, [state.pointer.y / 10, -state.pointer.x / 5, 0], 0.25, delta)
   })
   return <group ref={group}>{children}</group>
@@ -61,7 +56,29 @@ function Shirt(props) {
   const { nodes, materials } = useGLTF('/shirt_baked_collapsed.glb')
   useFrame((state, delta) => easing.dampC(materials.lambert1.color, snap.color, 0.25, delta))
   return (
-    <Door size={[0.5, 0.5, 0.5]} rotation={[0, Math.PI / 2, 0]} />
+    // <Door size={[0.5, 0.5, 0.5]} material={materials.lambert1} rotation={[0, Math.PI / 2, 0]} />
+    <mesh castShadow geometry={nodes.T_Shirt_male.geometry} material={materials.lambert1} material-roughness={1} {...props} dispose={null}>
+      <Decal position={[0, 0.04, 0.15]} rotation={[0, 0, 0]} scale={0.15} map={texture} />
+    </mesh>
+  )
+}
+
+
+function DoorModel(props) {
+  const snap = useSnapshot(state)
+  const { nodes, materials } = useGLTF('./door/door.gltf')
+  useFrame((state, delta) => easing.dampC(materials.lambert1.color, snap.color, 0.25, delta))
+  return (
+    <group {...props} dispose={null} position={[0, 0, -10]}>
+      <mesh castShadow geometry={nodes.mesh_0.geometry} material={materials['default material']} />
+      <mesh castShadow geometry={nodes.mesh_0_1.geometry} material={materials['0133_Gray']} />
+      <mesh castShadow geometry={nodes.mesh_0_2.geometry} material={materials['0017_IndianRed']} />
+      <mesh castShadow geometry={nodes.mesh_0_3.geometry} material={materials['0133_Gray']} />
+      <mesh castShadow geometry={nodes.mesh_0_4.geometry} material={materials['Archibd _ Black Brushed Matel _ 3.jpg']} />
+      <mesh castShadow geometry={nodes.mesh_0_5.geometry} material={materials['Archibd _ Brushed Matel _ 2']} />
+      <mesh castShadow geometry={nodes.mesh_0_6.geometry} material={materials['archibd _ Door Wood _1']} />
+      <mesh castShadow geometry={nodes.mesh_0_7.geometry} material={materials['Archibd _ White Brushed Matel _ 4.jpg']} />
+    </group>
   )
 }
 

@@ -9,7 +9,7 @@ import { useGLTF } from '@react-three/drei'
 export function Door(props) {
   const { nodes, materials } = useGLTF('./door/door.gltf')
   return (
-    <group {...props} dispose={null}>
+    <group {...props} dispose={null} position={[0, 0, -10]}>
       <mesh geometry={nodes.mesh_0.geometry} material={materials['default material']} />
       <mesh geometry={nodes.mesh_0_1.geometry} material={materials['0133_Gray']} />
       <mesh geometry={nodes.mesh_0_2.geometry} material={materials['0017_IndianRed']} />

@@ -149,6 +149,13 @@ button:hover {
   transform: scale(1.1);
 }
 
+/* logo */
+.Innovlogo
+{
+  width: 200px;
+}
+
+
 /* CUSTOMIZER */
 
 .customizer {

@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { useGLTF, useTexture, AccumulativeShadows, RandomizedLight, Decal, Environment, Center } from '@react-three/drei'
+import { useGLTF, useTexture, AccumulativeShadows, RandomizedLight, Decal, Environment, Center, OrbitControls } from '@react-three/drei'
 import { easing } from 'maath'
 import { useSnapshot } from 'valtio'
 import { state } from './components/store'
@@ -11,12 +11,28 @@ export const App = ({ position = [0, 0, 2.5], fov = 25 }) => (
     <pointLight position={[2, 2, 10]} intensity={0.5} />
     {/* <pointLight position={[20, 10, -10]} intensity={3} /> */}
     <Environment files="./potsdamer_platz_1k.hdr" />
-    <CameraRig>
+    {/* <CameraRig>
       <Backdrop />
       <Center>
-        <DoorModel rotation={[0, Math.PI / 2, 0]}/>
       </Center>
-    </CameraRig>
+    </CameraRig> */}
+    <DoorModel position={[0, -1, 0]} rotation={[0, Math.PI / 2, 0]} />
+    <planeBufferGeometry castShadow args={[100, 100]} />
+    <OrbitControls
+      enablePan={false}
+      enableZoom={true}
+      enableDamping={true}
+      dampingFactor={0.08}
+      rotateSpeed={0.6}
+
+      // Limit up/down tilt
+      minPolarAngle={Math.PI / 5}
+      maxPolarAngle={Math.PI / 2}
+
+      // Allow limited horizontal rotation (left-right)
+      minAzimuthAngle={-Math.PI / 4}   // rotate left 45°
+      maxAzimuthAngle={Math.PI / 4}    // rotate right 45°
+    />
   </Canvas>
 )
 
@@ -57,33 +73,33 @@ function DoorModel(props) {
   const snap = useSnapshot(state)
 
 
-    if (materials.Baked_B_2) {
+  if (materials.Baked_B_2) {
     materials.Baked_B_2.metalness = 0.5
     materials.Baked_B_2.roughness = 0.55
   }
 
   useFrame((state, delta) => easing.dampC(materials.Baked_B_2.color, snap.color, 0.25, delta))
 
-      return (
-        <group {...props} dispose={null}>
-          <group position={[0, 0, 0.819]}>
-            <mesh geometry={nodes.Mesh_80001.geometry} material={materials.Baked_B_2} />
-            <mesh geometry={nodes.Mesh_80001_1.geometry} material={materials.grey} />
-          </group>
-          <group position={[0, 0, 0.819]}>
-            <mesh geometry={nodes.Mesh_88001.geometry} material={materials.Blackhandle} />
-            <mesh geometry={nodes.Mesh_88001_1.geometry} material={materials.numberkey} />
-          </group>
-          {/* <mesh geometry={nodes.tttttt001.geometry} material={materials.Baked_B_4} position={[0.165, 0, 0.179]} />
+  return (
+    <group {...props} dispose={null}>
+      <group position={[0, 0, 0.819]}>
+        <mesh geometry={nodes.Mesh_80001.geometry} material={materials.Baked_B_2} />
+        <mesh geometry={nodes.Mesh_80001_1.geometry} material={materials.grey} />
+      </group>
+      <group position={[0, 0, 0.819]}>
+        <mesh geometry={nodes.Mesh_88001.geometry} material={materials.Blackhandle} />
+        <mesh geometry={nodes.Mesh_88001_1.geometry} material={materials.numberkey} />
+      </group>
+      {/* <mesh geometry={nodes.tttttt001.geometry} material={materials.Baked_B_4} position={[0.165, 0, 0.179]} />
           <mesh geometry={nodes.ttttttt001.geometry} material={materials.Baked_B_3} position={[-2.231, 0, 0.179]} />
           <mesh geometry={nodes.tttt001.geometry} material={materials.Baked_B_6} position={[5.333, 0, 0.179]} />
           <mesh geometry={nodes.ttt001.geometry} material={materials.Baked_B_5} position={[2.667, 0, 0.179]} />
           <mesh geometry={nodes.ttttttt002.geometry} material={materials.Baked_B_2} position={[-4.468, 0, 0]} /> */}
-        </group>
-      )
+    </group>
+  )
 }
 
 export default App;
 
 useGLTF.preload('./door/DOOR_V4.gltf')
-;['/react.png', '/three2.png', '/pmndrs.png'].forEach(useTexture.preload)
+  ;['/react.png', '/three2.png', '/pmndrs.png'].forEach(useTexture.preload)

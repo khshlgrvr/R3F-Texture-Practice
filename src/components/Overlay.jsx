@@ -15,7 +15,7 @@ export const Overlay = () => {
         <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
             <motion.header initial={{ opacity: 0, y: -100 }} animate={{ opacity: 1, y: 0 }} transition={transition}>
                 <motion.div animate={{ x: snap.intro ? 0 : 100, opacity: snap.intro ? 1 : 0 }} transition={transition}>
-                    <AiOutlineShopping size="3em" />
+                    <img className="Innovlogo" src={"./Innovante_Logo.png"} sizes='10px' alt="logo" />
                 </motion.div>
             </motion.header>
             <AnimatePresence>
@@ -73,15 +73,7 @@ function Customizer() {
                     <div key={color} className={`circle`} style={{ background: color }} onClick={() => (state.color = color)}></div>
                 ))}
             </div>
-            <div className="decals">
-                <div className="decals--container">
-                    {snap.decals.map((decal) => (
-                        <div key={decal} className={`decal`} onClick={() => (state.decal = decal)}>
-                            <img src={decal + '_thumb.png'} alt="brand" />
-                        </div>
-                    ))}
-                </div>
-            </div>
+            
             <button
                 className="share"
                 style={{ background: snap.color }}
@@ -98,6 +90,7 @@ function Customizer() {
                 GO BACK
                 <AiOutlineArrowLeft size="1.3em" />
             </button>
+            <img className="Innovlogo" src={"./Innovante_Logo.png"} sizes='10px' alt="logo" />
         </div>
     )
 }

@@ -52,7 +52,7 @@ function CameraRig({ children }) {
 
 
 function DoorModel(props) {
-  const { nodes, materials } = useGLTF('./door/DOOR_V3.gltf')
+  const { nodes, materials } = useGLTF('./door/DOOR_V4.gltf')
   const snap = useSnapshot(state)
 
 
@@ -63,26 +63,26 @@ function DoorModel(props) {
 
   useFrame((state, delta) => easing.dampC(materials.Baked_B_2.color, snap.color, 0.25, delta))
 
-    return (
-      <group {...props} dispose={null}>
-        <group position={[0, 0, 0.819]}>
-          <mesh geometry={nodes.Mesh_80001.geometry} material={materials.Baked_B_2} />
-          <mesh geometry={nodes.Mesh_80001_1.geometry} material={materials.grey} />
+      return (
+        <group {...props} dispose={null}>
+          <group position={[0, 0, 0.819]}>
+            <mesh geometry={nodes.Mesh_80001.geometry} material={materials.Baked_B_2} />
+            <mesh geometry={nodes.Mesh_80001_1.geometry} material={materials.grey} />
+          </group>
+          <group position={[0, 0, 0.819]}>
+            <mesh geometry={nodes.Mesh_88001.geometry} material={materials.Blackhandle} />
+            <mesh geometry={nodes.Mesh_88001_1.geometry} material={materials.numberkey} />
+          </group>
+          {/* <mesh geometry={nodes.tttttt001.geometry} material={materials.Baked_B_4} position={[0.165, 0, 0.179]} />
+          <mesh geometry={nodes.ttttttt001.geometry} material={materials.Baked_B_3} position={[-2.231, 0, 0.179]} />
+          <mesh geometry={nodes.tttt001.geometry} material={materials.Baked_B_6} position={[5.333, 0, 0.179]} />
+          <mesh geometry={nodes.ttt001.geometry} material={materials.Baked_B_5} position={[2.667, 0, 0.179]} />
+          <mesh geometry={nodes.ttttttt002.geometry} material={materials.Baked_B_2} position={[-4.468, 0, 0]} /> */}
         </group>
-        <group position={[0, 0, 0.819]}>
-          <mesh geometry={nodes.Mesh_88001.geometry} material={materials.Blackhandle} />
-          <mesh geometry={nodes.Mesh_88001_1.geometry} material={materials.numberkey} />
-        </group>
-        {/* <mesh geometry={nodes.tttttt001.geometry} material={materials.Baked_B_4} position={[0.165, -0.184, 0.179]} />
-        <mesh geometry={nodes.ttttttt001.geometry} material={materials.Baked_B_3} position={[-2.231, -0.184, 0.179]} />
-        <mesh geometry={nodes.tttt001.geometry} material={materials.Baked_B_6} position={[5.333, -0.184, 0.179]} />
-        <mesh geometry={nodes.ttt001.geometry} material={materials.Baked_B_5} position={[2.667, -0.184, 0.179]} />
-        <mesh geometry={nodes.ttttttt002.geometry} material={materials.Baked_B_2} position={[-4.468, -0.184, 0.179]} /> */}
-      </group>
-    )
+      )
 }
 
 export default App;
 
-useGLTF.preload('./door/DOOR3.gltf')
+useGLTF.preload('./door/DOOR_V4.gltf')
 ;['/react.png', '/three2.png', '/pmndrs.png'].forEach(useTexture.preload)

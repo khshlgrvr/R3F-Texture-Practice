@@ -7,8 +7,9 @@ import { state } from './components/store'
 
 export const App = ({ position = [0, 0, 2.5], fov = 25 }) => (
   <Canvas shadows camera={{ position: [0, 0, 10], fov }} gl={{ preserveDrawingBuffer: true }} eventSource={document.getElementById('root')} eventPrefix="client">
-    <ambientLight intensity={1} />
-    <pointLight position={[10, 10, 10]} intensity={3} />
+    <ambientLight intensity={3} />
+    <pointLight position={[2, 2, 10]} intensity={0.5} />
+    {/* <pointLight position={[20, 10, -10]} intensity={3} /> */}
     <Environment files="./potsdamer_platz_1k.hdr" />
     <CameraRig>
       <Backdrop />
@@ -57,8 +58,8 @@ function DoorModel(props) {
 
 
     if (materials.Baked_B_2) {
-    materials.Baked_B_2.metalness = 1
-    materials.Baked_B_2.roughness = 0.9
+    materials.Baked_B_2.metalness = 0.5
+    materials.Baked_B_2.roughness = 0.55
   }
 
   useFrame((state, delta) => easing.dampC(materials.Baked_B_2.color, snap.color, 0.25, delta))
